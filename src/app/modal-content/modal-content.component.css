@@ -1,0 +1,14 @@
+.modal-container {
+  padding: 1rem;
+}
+.title {
+  margin-bottom: 3rem;
+}
+.content p {
+  line-height: 1.4;
+  font-size: 1.1rem;
+}
+.content .current {
+  color: rgb(24, 71, 129);
+  font-weight: 700;
+}

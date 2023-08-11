@@ -1,0 +1,32 @@
+.container {
+  padding: 1rem;
+  margin-top: 15rem;
+  display: flex;
+  justify-content: center;
+}
+.container button {
+  border: none;
+  padding: 0.625rem;
+  cursor: pointer;
+  border-radius: 0.3rem;
+}
+.container button.template {
+  margin-right: 2rem;
+}
+.modal-container {
+  padding: 1rem;
+}
+.title {
+  margin-bottom: 3rem;
+}
+.content p {
+  line-height: 1.4;
+  font-size: 1.1rem;
+}
+.content .current {
+  color: rgb(24, 71, 129);
+  font-weight: 600;
+}
+.footer {
+  margin-top: 2rem;
+}
