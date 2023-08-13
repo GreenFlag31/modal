@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalService } from './modal.service';
-import { Data } from './modal-options';
+import { Options } from './modal-options';
 import { Observable, fromEvent, zip } from 'rxjs';
 
 @Component({
@@ -20,7 +20,7 @@ import { Observable, fromEvent, zip } from 'rxjs';
 export class ModalComponent implements AfterViewInit {
   @ViewChild('modal') modal!: ElementRef<HTMLDivElement>;
   @ViewChild('overlay') overlay!: ElementRef<HTMLDivElement>;
-  options!: Data | undefined;
+  options!: Options | undefined;
   modalAnimationEnd!: Observable<Event>;
   modalLeaveAnimation!: string;
   overlayLeaveAnimation!: string;
@@ -35,11 +35,11 @@ export class ModalComponent implements AfterViewInit {
 
   @HostListener('document:keydown.escape')
   onEscape() {
-    this.onClose();
+    this.modalService.close();
   }
 
   onClose() {
-    // Concerns escape | outside click
+    // outside click
     this.modalService.close();
   }
 
@@ -96,7 +96,7 @@ export class ModalComponent implements AfterViewInit {
     this.modal.nativeElement.style.animation = this.modalLeaveAnimation;
     this.overlay.nativeElement.style.animation = this.overlayLeaveAnimation;
 
-    // Goal here is to clean up the DOM to not have 'dead elements'. Different cases :
+    // Goal here is to clean up the DOM to not have 'dead elements'
     // No animations on both elements
     if (
       !this.options?.animations?.modal?.leave &&

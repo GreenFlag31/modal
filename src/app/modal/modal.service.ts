@@ -9,14 +9,14 @@ import {
   createComponent,
 } from '@angular/core';
 import { ModalComponent } from './modal.component';
-import { Data } from './modal-options';
+import { Options } from './modal-options';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModalService {
   newModalComponent!: ComponentRef<ModalComponent>;
-  options!: Data | undefined;
+  options!: Options | undefined;
 
   constructor(
     private appRef: ApplicationRef,
@@ -26,26 +26,29 @@ export class ModalService {
   open(
     vcrOrComponent: ViewContainerRef,
     content: TemplateRef<Element>,
-    options?: Data
+    options?: Options
   ): void;
 
-  open<C>(vcrOrComponent: Type<C>, options?: Data): void;
+  open<C>(vcrOrComponent: Type<C>, options?: Options): void;
 
   open<C>(
     vcrOrComponent: ViewContainerRef | Type<C>,
-    param2?: TemplateRef<Element> | Data,
-    options?: Data
+    param2?: TemplateRef<Element> | Options,
+    options?: Options
   ) {
     if (vcrOrComponent instanceof ViewContainerRef) {
       this.openWithTemplate(vcrOrComponent, param2 as TemplateRef<Element>);
       this.options = options;
     } else {
       this.openWithComponent(vcrOrComponent);
-      this.options = param2 as Data | undefined;
+      this.options = param2 as Options | undefined;
     }
   }
 
-  openWithTemplate(vcr: ViewContainerRef, content: TemplateRef<Element>) {
+  private openWithTemplate(
+    vcr: ViewContainerRef,
+    content: TemplateRef<Element>
+  ) {
     vcr.clear();
 
     const innerContent = vcr.createEmbeddedView(content);
@@ -56,7 +59,7 @@ export class ModalService {
     });
   }
 
-  openWithComponent(component: Type<unknown>) {
+  private openWithComponent(component: Type<unknown>) {
     const newComponent = createComponent(component, {
       environmentInjector: this.injector,
     });

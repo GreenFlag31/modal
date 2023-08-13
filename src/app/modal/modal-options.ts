@@ -1,4 +1,4 @@
-export interface Data {
+export interface Options {
   animations?: {
     modal?: {
       enter?: string;
