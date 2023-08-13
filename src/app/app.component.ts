@@ -40,7 +40,7 @@ export class AppComponent {
       animations: {
         modal: {
           enter: 'enter-scaling 0.3s ease-out',
-          leave: 'fade-out 0.3s forwards',
+          leave: 'fade-out 0.1s forwards',
         },
         overlay: {
           enter: 'fade-in 1s',
